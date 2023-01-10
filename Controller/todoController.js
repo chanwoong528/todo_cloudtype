@@ -4,7 +4,7 @@ const { createTodo, findAllTodoByUserId } = require("../Service/todoService");
 
 const router = new express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/:userId", async (req, res) => {
 
     findAllTodoByUserId(req, res)
 })

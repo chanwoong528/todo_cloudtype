@@ -1,5 +1,6 @@
 const db = require("../Model");
 const User = db.user;
+const Todo = db.todo;
 const Op = db.Sequelize.Op;
 
 exports.createUser = (req, res) => {
@@ -14,7 +15,7 @@ exports.createUser = (req, res) => {
     User.findOne({ where: { email: user.email } }).then((userData) => {
         if (userData) {
             return res.status(400).send({
-                message: "User exist!",
+                message: "User exist!", type: "DUPLICATED", user_id: userData.user_id
             });
         } else {
             User.create(user)

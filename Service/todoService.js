@@ -6,20 +6,20 @@ const Op = db.Sequelize.Op;
 exports.findAllTodoByUserId = (req, res) => {
 
 
-    if (!req.body.user_id) {
+    if (!req.params.userId) {
         return res.status(400).send({
             message: "User Does not Exist!"
         })
     }
-    const userId = req.body.user_id;
+    const userId = req.params.userId;
     User.findOne({ where: { user_id: userId } }).then((user) => {
         if (!user) {
             return res.status(400).send({
-                message: "User Does not Exist!"
+                message: "User Does not Exist!",
             })
         } else {
             Todo.findAll({ where: { author_id: userId } }).then((todos) => {
-                return res.send({ todos: todos })
+                return res.send(todos)
             })
         }
     })
