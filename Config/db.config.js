@@ -1,9 +1,11 @@
+require('dotenv').config()
+
 module.exports = {
-    HOST: "svc.gksl2.cloudtype.app",
-    USER: "root",
-    PASSWORD: "1234",
-    PORT: "31835",
-    DB: "postgres",
+    HOST: process.env.DB_HOST,
+    USER: process.env.DB_USER,
+    PASSWORD: process.env.DB_PASSWORD,
+    PORT: process.env.DB_PORT_POOL,
+    DB: process.env.DB_DB,
     dialect: "postgres",
 
     pool: {
